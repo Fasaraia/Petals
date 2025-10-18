@@ -8,10 +8,11 @@ Just your regular input detector and replay macro
 * Infinite Replay
 * Add Extra End delay
 * Save & Load Files
+* Combo Keys (anything like CTRL+SHIFT+5)
 
 ## Not Features (Things I'm too stupid/lazy to figure out)
 
-Special Combo Key Inputs (Aka anything like CTRL+SHIFT+5, ALT+T ect) <---- Stupid
+Alt Combo Key, Meta Key Ect Inputs (Aka ALT+T, WIN+R ect) <---- Lazy
 Closing Keybind (Just close it from the taskbar) <---- Lazy
 
 ## Usage
