@@ -15,6 +15,14 @@ Just your regular input detector and replay macro
 Alt Combo Key, Meta Key Ect Inputs (Aka ALT+T, WIN+R ect) <---- Lazy
 Closing Keybind (Just close it from the taskbar) <---- Lazy
 
+## To Be Added
+
+Mpos accuracy option - Let users pick Mouse Position accuracy in exchange for larger file size 
+
+<sub> (Potenially causes replay delay due to high amount of inputs) </sub>
+
+
+
 ## Usage
 
 Keybinds by default are:
