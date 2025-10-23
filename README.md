@@ -13,6 +13,7 @@ Just your regular input detector and replay macro
 ## Not Features (Things I'm too stupid/lazy to figure out)
 
 Alt Combo Key, Meta Key Ect Inputs (Aka ALT+T, WIN+R ect) <---- Lazy
+
 Closing Keybind (Just close it from the taskbar) <---- Lazy
 
 ## To Be Added
@@ -21,6 +22,7 @@ Mpos accuracy option - Let users pick Mouse Position accuracy in exchange for la
 
 <sub> (Potenially causes replay delay due to high amount of inputs) </sub>
 
+Timer - I uh...
 
 
 ## Usage
