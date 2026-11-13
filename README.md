@@ -13,16 +13,21 @@
 ## Features
 
 - **Record and replay** mouse and keyboard input, including keyboard keys, all three mouse buttons, scrolling, and multi-monitor mouse movement.
+- **Relative mouse recording** for capturing mouse movement while holding right or middle mouse buttons, improving compatibility with games.
+- **Macro preview** to visualise recorded mouse movement, clicks, scrolling, and keyboard inputs without actually playing the macro.
+- **Input overlay** displaying recent keyboard presses, modifier combinations, mouse clicks, and scrolling directly on screen.
 - **Adjustable playback speed** to make a macro run faster or slower.
 - **Loop playback** a set number of times or indefinitely, with an optional delay between loops.
+- **Timed playback** to run a macro for a specified duration instead of a set number of loops.
 - **Playback countdown** so you can switch to the target window before a macro starts.
 - **Pause and resume** playback using a hotkey.
 - **Custom global hotkeys** for recording, playback, and pausing, including modifier combinations such as `Ctrl+Alt+F5`.
 - **Live playback status** showing elapsed time, total macro duration, loop progress, and paused state.
+- **Recording recovery** to restore your most recent recording if you forget to save it.
 - **Macro library** with search, favourites, renaming, and permanent deletion.
-- **Reusable playback profiles** for saving different speed, loop, delay, and countdown configurations.
+- **Reusable playback profiles** for saving different speed, loop, delay, countdown, and timed playback configurations.
 - **Dashboard statistics** for saved macros, completed recordings, playback sessions, and total recording time.
-- **Automatic update checks** against the GitHub Releases page.
+- **Automatic updates** with the option to download and install newer releases directly from Petals.
 - Animated menus and custom Petals windows.
 
 ## Limitations
@@ -59,14 +64,38 @@ To change a hotkey, open **Settings → Hotkeys**, click the relevant hotkey fie
 3. Press **Record** again to stop.
 4. Use **Save** to name and save the macro.
 
+Petals also keeps a recovery copy of the most recent completed recording. If you forget to save it, use **Load → Recover last recording** to restore it.
+
 ### Playing a macro
 
 1. Select a macro from **Load**.
-2. Adjust playback speed, loops, loop delay, or countdown in **Settings → Playback**, or select a saved profile in **Settings → Profiles**.
+2. Adjust playback speed, loops, loop delay, countdown, or timed playback in **Settings → Playback**, or select a saved profile in **Settings → Profiles**.
 3. Press **Play** or use the playback hotkey.
 4. Use the pause hotkey to pause or resume. Press **Play** again to stop playback.
 
+### Previewing a macro
+
+Right-click the main window and select **Preview macro path** to open a visual preview of the currently loaded macro.
+
+The preview includes:
+- Animated cursor movement along the recorded path.
+- Numbered markers and visual ripples for mouse clicks.
+- Different indicators for left, right, and middle mouse buttons.
+- Scrolling indicators.
+- Keyboard input visualisation.
+
+The preview is a dry run. It does not send mouse or keyboard input to other applications.
+
+### Input overlay
+
+Enable **Show key & click overlay** in **Settings → Playback**, or right-click the main window and select **Show input overlay**.
+
+The overlay displays recent keyboard presses, modifier combinations, mouse clicks, and scrolling. Repeated inputs are grouped together, and older inputs gradually fade away.
+
+The overlay is click-through and does not interfere with interaction in other applications.
+
 ## Main window
+
 <img width="312" height="90" alt="image" src="https://github.com/user-attachments/assets/d949f475-85c4-4dce-b308-8f8abc3ba767" />
 
 The main window contains five buttons:
@@ -81,9 +110,11 @@ The main window contains five buttons:
 
 The status line below the buttons displays the current state. During playback it shows elapsed time, total duration, and loop progress. The playback progress is shown only while a macro is playing or paused.
 
+Right-click the main window to access the macro preview, input overlay toggle, and exit option.
 
 ## Macro library
-<img width="152" height="242" alt="image" src="https://github.com/user-attachments/assets/d04d79d5-0573-4fb5-8e6f-a8e09d08500a" /> 
+
+<img width="152" height="242" alt="image" src="https://github.com/user-attachments/assets/d04d79d5-0573-4fb5-8e6f-a8e09d08500a" />
 
 Click **Load** to open the macro library. It lists valid macros saved in the Petals `Macros` folder, along with valid external macros from your recent file history.
 
@@ -93,14 +124,10 @@ Click **Load** to open the macro library. It lists valid macros saved in the Pet
 - **Rename:** Opens a custom Petals window to rename the macro. The new name must be valid and cannot already be in use.
 - **Remove macro:** Opens a custom confirmation window, then permanently deletes the selected `.pt` file. This is not the same as removing a shortcut from a recent list.
 - **Browse…:** Load a `.pt` macro from another location.
+- **Recover last recording:** Restore the most recent completed recording.
 - **Open macros folder:** Open the folder where Petals stores its macros.
 
-
 <img width="165" height="130" alt="image" src="https://github.com/user-attachments/assets/655a8996-a97e-4b58-9035-1a050e6ede68" /> <img width="266" height="130" alt="image" src="https://github.com/user-attachments/assets/cec12ff6-fe4f-4072-816c-da31dbb8eaab" /> <img width="301.47" height="130" alt="image" src="https://github.com/user-attachments/assets/74974f92-645b-4494-8926-334c60767587" />
-
-
-
-
 
 ## Settings
 
@@ -126,6 +153,10 @@ Statistics are stored locally on the device. Use **Reset Statistics** to reset t
 | **Loops** | Number of times to play the macro. `0` means repeat indefinitely until stopped. |
 | **Delay Between Loops** | Wait time between repetitions, in seconds. |
 | **Countdown** | Wait time before playback begins, giving you time to switch to the target window. |
+| **Run for** | Play the macro for a specified number of minutes instead of using a loop count. `0` disables timed playback. |
+| **Show key & click overlay** | Toggles the on-screen input overlay. |
+
+When **Run for** is enabled, the duration takes priority over the loop count. Playback stops after the current repetition finishes once the selected duration has elapsed.
 
 <img width="298" height="339" alt="image" src="https://github.com/user-attachments/assets/9221724c-50a0-4e6c-853c-71af28f7df83" />
 
@@ -135,7 +166,7 @@ Configure the global hotkeys for:
 - Record / Stop Recording
 - Play / Stop Playing
 - Pause / Resume
-  
+
 <img width="299" height="288" alt="image" src="https://github.com/user-attachments/assets/74fb9717-d93b-40f7-bda8-eccad4545c1a" />
 
 ### Profiles
@@ -145,6 +176,7 @@ Profiles let you save reusable playback configurations. Each profile can store:
 - Loop count
 - Delay between loops
 - Countdown
+- Timed playback duration
 
 Choose a profile from the dropdown to load its values. Use **Save as New** to create a profile, **Update Selected** to overwrite the selected profile with the current values, and **Delete** to remove it.
 
@@ -154,11 +186,14 @@ Press **Save Settings** to apply the selected profile for playback. Choose **No 
 
 ## Update checker
 
-Petals checks the latest release on GitHub shortly after startup. If a newer version is available, it displays a notification with a link to the Releases page.
+Petals checks the latest release on GitHub shortly after startup. If a newer version is available, it displays an update notification.
 
 - Update checks run in the background.
 - Connection or GitHub API errors are ignored so they do not interrupt recording or playback.
-- Petals does not automatically download or install updates.
+- Packaged `.exe` builds can download and install updates directly using **Update now**.
+- Downloaded updates are verified before installation.
+- Source-code runs can use **View release** to open the GitHub Releases page.
+- Updates are not installed without your confirmation.
 
 You can always check manually at [GitHub Releases](https://github.com/Fasaraia/Petals/releases).
 
@@ -171,6 +206,7 @@ Petals/
 ├── macro_settings.json
 ├── macro_profiles.json
 ├── petals_stats.json
+├── last_recording.pt
 └── Macros/
     └── YourMacro.pt
 ```
@@ -192,6 +228,7 @@ Use **Load → Open macros folder** to open the actual folder being used on your
 - `macro_settings.json` stores application settings, hotkeys, recent macro paths, and favourites.
 - `macro_profiles.json` stores playback profiles.
 - `petals_stats.json` stores dashboard statistics.
+- `last_recording.pt` stores the latest completed recording for recovery.
 - `Macros/` contains macros saved by Petals.
 
 ## Compatibility and notes
@@ -199,7 +236,7 @@ Use **Load → Open macros folder** to open the actual folder being used on your
 - Petals is designed for Windows.
 - Run Petals as administrator if you need to record or replay input in an application that is itself running as administrator.
 - Keep Petals running while a macro is playing.
-- Macros created with older v1.x versions are not compatible with v2.0 and newer because the macro file format changed.
+- New recordings use the PT4 macro format, which stores exact pixel coordinates. Older PT2 and PT3 macro formats remain readable.
 
 ## Support and updates
 
