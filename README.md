@@ -1,11 +1,11 @@
- <p align="center">
+<p align="center">
   <img width="64" height="64" alt="Petals logo" src="https://github.com/user-attachments/assets/c26170a5-c87a-4490-abf8-fe8da966f459" />
 </p>
 
 <h1 align="center">Petals Macro</h1>
 
 <p align="center">
-  A lightweight Windows macro recorder and player for mouse and keyboard input.
+  <b>Version 3.0.0</b>
 </p>
 
 ---
@@ -26,6 +26,9 @@
 - **Recording recovery** to restore your most recent recording if you forget to save it.
 - **Macro library** with search, favourites, renaming, and permanent deletion.
 - **Reusable playback profiles** for saving different speed, loop, delay, countdown, and timed playback configurations.
+- **Themes** with four built-in looks, a built-in theme editor with a colour picker, and shareable `.ptheme` theme packages.
+- **Custom backgrounds** from your own image, with an automatic resize and a Discord-style crop editor.
+- **Always on top** option to keep the Petals window above other windows.
 - **Dashboard statistics** for saved macros, completed recordings, playback sessions, and total recording time.
 - **Automatic updates** with the option to download and install newer releases directly from Petals.
 - Animated menus and custom Petals windows.
@@ -41,7 +44,7 @@
 
 1. Download the latest version from [GitHub Releases](https://github.com/Fasaraia/Petals/releases).
 2. Run Petals.
-3. Open **Settings** to configure playback options and hotkeys.
+3. Open **Settings** to configure playback options, hotkeys, and the theme.
 
 ## Usage
 
@@ -75,10 +78,10 @@ Petals also keeps a recovery copy of the most recent completed recording. If you
 
 ### Previewing a macro
 
-Right-click the main window and select **Preview macro path** to open a visual preview of the currently loaded macro.
+Open **Settings → Playback** and press **Preview macro path**, or right-click the main window and select **Preview macro path**, to open a visual preview of the currently loaded macro.
 
 The preview includes:
-- Animated cursor movement along the recorded path.
+- Animated cursor movement along the recorded path, starting at the first recorded position.
 - Numbered markers and visual ripples for mouse clicks.
 - Different indicators for left, right, and middle mouse buttons.
 - Scrolling indicators.
@@ -94,11 +97,15 @@ The overlay displays recent keyboard presses, modifier combinations, mouse click
 
 The overlay is click-through and does not interfere with interaction in other applications.
 
+### Always on top
+
+Enable **Always on top** in **Settings → Playback**, or right-click the main window and select **Always on top**, to keep Petals above other windows.
+
 ## Main window
 
 <img width="312" height="90" alt="image" src="https://github.com/user-attachments/assets/d949f475-85c4-4dce-b308-8f8abc3ba767" />
 
-The main window contains five buttons:
+The main window contains five buttons (a theme can hide some of them, see [Themes](#themes)):
 
 | Button | Function |
 |---|---|
@@ -110,7 +117,17 @@ The main window contains five buttons:
 
 The status line below the buttons displays the current state. During playback it shows elapsed time, total duration, and loop progress. The playback progress is shown only while a macro is playing or paused.
 
-Right-click the main window to access the macro preview, input overlay toggle, and exit option.
+Right-click the main window to open the menu:
+
+| Item | Function |
+|---|---|
+| **Preview macro path** | Previews the loaded macro. Disabled when no macro is loaded. |
+| **Show input overlay** | Toggles the on-screen input overlay. |
+| **Always on top** | Keeps Petals above other windows. |
+| **Theme** | Switches between installed themes. |
+| **Exit** | Closes Petals. |
+
+If the active theme hides some of the buttons, their actions (for example Save or Load) are added to this menu instead.
 
 ## Macro library
 
@@ -131,7 +148,9 @@ Click **Load** to open the macro library. It lists valid macros saved in the Pet
 
 ## Settings
 
-The Settings window contains four tabs.
+The Settings window contains five tabs.
+
+> The screenshots below were taken on an earlier version and may differ slightly from the current layout.
 
 ### Dashboard
 
@@ -155,6 +174,8 @@ Statistics are stored locally on the device. Use **Reset Statistics** to reset t
 | **Countdown** | Wait time before playback begins, giving you time to switch to the target window. |
 | **Run for** | Play the macro for a specified number of minutes instead of using a loop count. `0` disables timed playback. |
 | **Show key & click overlay** | Toggles the on-screen input overlay. |
+| **Always on top** | Keeps the Petals window above other windows. |
+| **Preview macro path** | Opens the preview for the loaded macro. |
 
 When **Run for** is enabled, the duration takes priority over the loop count. Playback stops after the current repetition finishes once the selected duration has elapsed.
 
@@ -184,13 +205,55 @@ Press **Save Settings** to apply the selected profile for playback. Choose **No 
 
 <img width="298" height="447" alt="image" src="https://github.com/user-attachments/assets/7e969416-48d1-45b5-8300-a577357d024b" />
 
+### Themes
+
+Choose how Petals looks. Pick a theme from the list and press **Save Settings** to apply it. Themes available out of the box:
+
+| Theme | Description |
+|---|---|
+| **Petals** | The default pink look. |
+| **Midnight** | A dark blue look. |
+| **Forest** | A green look. |
+| **Slate** | A neutral look with a vertical button layout and no status line. |
+
+The tab also lets you:
+- **Customize theme…** to open the theme editor (see below).
+- **Import…** a `.ptheme` file. You can also drag a `.ptheme` file onto the Petals window.
+- **Export…** the selected theme as a `.ptheme` file to share with others.
+
+## Themes
+
+### Theme editor
+
+**Customize theme…** opens an editor with a live preview. You can:
+- Change every colour with a colour picker.
+- Set a background image, with an automatic resize and a crop editor (pan, zoom, rotate) that works like Discord's banner crop.
+- Adjust **button opacity** so a background image shows through the buttons. The icons always stay fully visible.
+- Adjust background dim.
+- Save the result as a theme of your own, or export it as a `.ptheme` file.
+
+Images you add are shrunk and resized automatically, so you don't have to prepare them.
+
+### Making a theme by hand
+
+A `.ptheme` file is a zip with a `theme.json` and optional images and fonts. Besides colours, a theme can set:
+- Icons for each button.
+- Button images and a background image.
+- A custom font.
+- Layout: horizontal or vertical, spacing, window size, and whether the status line is shown.
+- Which buttons are shown, so a theme can offer a smaller set such as only Record and Play.
+
+Themes are data only. They can't contain code, and Petals only reads the exact file names it expects. The full guide, with the complete list of options and examples, is in **[THEMES.md](THEMES.md)**.
+
+Imported themes and your own are stored in the `Themes` folder (see below).
+
 ## Update checker
 
 Petals checks the latest release on GitHub shortly after startup. If a newer version is available, it displays an update notification.
 
 - Update checks run in the background.
 - Connection or GitHub API errors are ignored so they do not interrupt recording or playback.
-- Packaged `.exe` builds can download and install updates directly using **Update now**.
+- Packaged `.exe` builds can download and install updates directly using **Update now**, with download progress and the option to cancel.
 - Downloaded updates are verified before installation.
 - Source-code runs can use **View release** to open the GitHub Releases page.
 - Updates are not installed without your confirmation.
@@ -207,6 +270,9 @@ Petals/
 ├── macro_profiles.json
 ├── petals_stats.json
 ├── last_recording.pt
+├── custom_background.jpg
+├── Themes/
+│   └── YourTheme.ptheme
 └── Macros/
     └── YourMacro.pt
 ```
@@ -225,10 +291,12 @@ Documents\Petals
 
 Use **Load → Open macros folder** to open the actual folder being used on your computer.
 
-- `macro_settings.json` stores application settings, hotkeys, recent macro paths, and favourites.
+- `macro_settings.json` stores application settings, hotkeys, the selected theme, recent macro paths, and favourites.
 - `macro_profiles.json` stores playback profiles.
 - `petals_stats.json` stores dashboard statistics.
 - `last_recording.pt` stores the latest completed recording for recovery.
+- `custom_background.jpg` is the background image you chose in the theme editor, after resizing and cropping.
+- `Themes/` contains imported and custom themes.
 - `Macros/` contains macros saved by Petals.
 
 ## Compatibility and notes
