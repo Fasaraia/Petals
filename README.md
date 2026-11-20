@@ -5,7 +5,7 @@
 <h1 align="center">Petals Macro</h1>
 
 <p align="center">
-  <b>Version 3.0.0</b>
+  <b>Version 3.1.0</b>
 </p>
 
 ---
@@ -13,6 +13,7 @@
 ## Features
 
 - **Record and replay** mouse and keyboard input, including keyboard keys, all three mouse buttons, scrolling, and multi-monitor mouse movement.
+- **Click Spots** to build a macro by pointing instead of recording: click the spots you want on screen, then choose the mouse button and how many seconds to wait before each one. Each spot can also repeat its click, hold the button, and use random position and delay jitter.
 - **Relative mouse recording** for capturing mouse movement while holding right or middle mouse buttons, improving compatibility with games.
 - **Macro preview** to visualise recorded mouse movement, clicks, scrolling, and keyboard inputs without actually playing the macro.
 - **Input overlay** displaying recent keyboard presses, modifier combinations, mouse clicks, and scrolling directly on screen.
@@ -21,7 +22,8 @@
 - **Timed playback** to run a macro for a specified duration instead of a set number of loops.
 - **Playback countdown** so you can switch to the target window before a macro starts.
 - **Pause and resume** playback using a hotkey.
-- **Custom global hotkeys** for recording, playback, and pausing, including modifier combinations such as `Ctrl+Alt+F5`.
+- **Failsafe** that stops playback when you move the mouse into the top-left corner of the screen.
+- **Custom global hotkeys** for recording, playback, pausing, and Click Spots, including modifier combinations such as `Ctrl+Alt+F5`.
 - **Live playback status** showing elapsed time, total macro duration, loop progress, and paused state.
 - **Recording recovery** to restore your most recent recording if you forget to save it.
 - **Macro library** with search, favourites, renaming, and permanent deletion.
@@ -31,7 +33,6 @@
 - **Always on top** option to keep the Petals window above other windows.
 - **Dashboard statistics** for saved macros, completed recordings, playback sessions, and total recording time.
 - **Automatic updates** with the option to download and install newer releases directly from Petals.
-- Animated menus and custom Petals windows.
 
 ## Limitations
 
@@ -55,8 +56,9 @@
 | Start / stop recording | `F1` |
 | Start / stop playback | `F2` |
 | Pause / resume playback | `F3` |
+| Open Click Spots | `F4` |
 
-To change a hotkey, open **Settings → Hotkeys**, click the relevant hotkey field, and press the key or key combination you want. Press `Esc` to cancel the selection. The three hotkeys must be different.
+To change a hotkey, open **Settings → Hotkeys**, click the relevant hotkey field, and press the key or key combination you want. Press `Esc` to cancel the selection. All four hotkeys must be different.
 
 > **Tip:** A single key such as `A` will trigger whenever that key is pressed, including while typing. Modifier combinations such as `Ctrl+Alt+R` are less likely to interfere with normal typing.
 
@@ -75,6 +77,12 @@ Petals also keeps a recovery copy of the most recent completed recording. If you
 2. Adjust playback speed, loops, loop delay, countdown, or timed playback in **Settings → Playback**, or select a saved profile in **Settings → Profiles**.
 3. Press **Play** or use the playback hotkey.
 4. Use the pause hotkey to pause or resume. Press **Play** again to stop playback.
+
+### Failsafe
+
+If a macro misbehaves, move the mouse into the **top-left corner of the screen** during playback. Petals stops immediately and releases any keys or mouse buttons the macro was holding. It also works while playback is paused.
+
+The failsafe stays quiet if the cursor was already in the corner when playback started, or if the macro itself moved the cursor there. It is on by default and can be turned off with **Failsafe** in **Settings → Playback**.
 
 ### Previewing a macro
 
@@ -121,6 +129,7 @@ Right-click the main window to open the menu:
 
 | Item | Function |
 |---|---|
+| **Click spots…** | Opens the Click Spots editor (see [Click Spots](#click-spots)). |
 | **Preview macro path** | Previews the loaded macro. Disabled when no macro is loaded. |
 | **Show input overlay** | Toggles the on-screen input overlay. |
 | **Always on top** | Keeps Petals above other windows. |
@@ -145,6 +154,35 @@ Click **Load** to open the macro library. It lists valid macros saved in the Pet
 - **Open macros folder:** Open the folder where Petals stores its macros.
 
 <img width="165" height="130" alt="image" src="https://github.com/user-attachments/assets/655a8996-a97e-4b58-9035-1a050e6ede68" /> <img width="266" height="130" alt="image" src="https://github.com/user-attachments/assets/cec12ff6-fe4f-4072-816c-da31dbb8eaab" /> <img width="301.47" height="130" alt="image" src="https://github.com/user-attachments/assets/74974f92-645b-4494-8926-334c60767587" />
+
+## Click Spots
+
+Build a macro by pointing instead of recording.
+
+1. Right-click the Petals bar and choose **Click spots…**, or press `F4` (the default key).
+2. Press **Add spots…**. The screen dims: click anywhere to add a spot. Press **Esc**, **Enter** or right-click when you're done.
+3. For each spot set the **mouse button** (left, right, middle), the **X / Y** position, and the **delay in seconds** to wait before the click, counted from the previous click.
+4. Drag the **≡** grip to reorder spots, or press **✕** to remove one.
+5. Press **Save**. The spots are loaded as your current macro, so playback, loops, speed, profiles, countdown, "Run for" and **Preview macro path** all work. To keep it as a file, use the Save button on the main Petals bar afterwards: it is saved as a normal `.pt` macro.
+
+Your saved spots are remembered between sessions. **Close** closes the editor and discards any changes you haven't saved. **Clear all** empties the list (press **Save** to apply it), and **Clear & unload** empties the list and unloads the macro straight away.
+
+### Spot options
+
+Press **⚙** on a spot for:
+
+| Option | What it does |
+| --- | --- |
+| Clicks | Click 1–20 times at the spot (2 = double click) |
+| Hold each click | How long the button stays down |
+| Position jitter (± px) | Click a random distance away from the spot, new each time |
+| Delay jitter (± %) | Vary the wait before this spot by a random amount, new each time |
+| Test click | Hides Petals and clicks the spot once |
+| Duplicate spot | Copies the spot just below itself |
+
+The ⚙ button is highlighted when a spot uses any non-default option.
+
+Jitter is re-rolled every loop. A macro saved to a `.pt` file keeps one fixed roll.
 
 ## Settings
 
@@ -175,6 +213,7 @@ Statistics are stored locally on the device. Use **Reset Statistics** to reset t
 | **Run for** | Play the macro for a specified number of minutes instead of using a loop count. `0` disables timed playback. |
 | **Show key & click overlay** | Toggles the on-screen input overlay. |
 | **Always on top** | Keeps the Petals window above other windows. |
+| **Failsafe** | Moving the mouse into the top-left corner of the screen stops playback. On by default. |
 | **Preview macro path** | Opens the preview for the loaded macro. |
 
 When **Run for** is enabled, the duration takes priority over the loop count. Playback stops after the current repetition finishes once the selected duration has elapsed.
@@ -187,6 +226,7 @@ Configure the global hotkeys for:
 - Record / Stop Recording
 - Play / Stop Playing
 - Pause / Resume
+- Click Spots
 
 <img width="299" height="288" alt="image" src="https://github.com/user-attachments/assets/74fb9717-d93b-40f7-bda8-eccad4545c1a" />
 
@@ -291,7 +331,7 @@ Documents\Petals
 
 Use **Load → Open macros folder** to open the actual folder being used on your computer.
 
-- `macro_settings.json` stores application settings, hotkeys, the selected theme, recent macro paths, and favourites.
+- `macro_settings.json` stores application settings, hotkeys, the selected theme, recent macro paths, favourites, and your Click Spots.
 - `macro_profiles.json` stores playback profiles.
 - `petals_stats.json` stores dashboard statistics.
 - `last_recording.pt` stores the latest completed recording for recovery.
